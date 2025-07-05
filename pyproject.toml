@@ -1,0 +1,20 @@
+[project]
+name = "quick_research"
+version = "0.1.0"
+description = "quick_research using crewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<=3.13"
+dependencies = [
+    "crewai[tools]>=0.75.0,<1.0.0"
+]
+
+[project.scripts]
+quick_research = "quick_research.main:run"
+run_crew = "quick_research.main:run"
+train = "quick_research.main:train"
+replay = "quick_research.main:replay"
+test = "quick_research.main:test"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
