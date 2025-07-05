@@ -1,5 +1,10 @@
 #!/usr/bin/env python
-import sys
+# --- force modern SQLite ---
+import sys, pysqlite3
+sys.modules["sqlite3"] = sys.modules.pop("pysqlite3")
+# ---------------------------
+
+
 from quick_research.crew import QuickResearchCrew
 from pathlib import Path
 import crewai
