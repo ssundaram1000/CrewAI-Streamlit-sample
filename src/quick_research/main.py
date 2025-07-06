@@ -1,9 +1,12 @@
 #!/usr/bin/env python
 # --- force modern SQLite ---
 # ---- modern SQLite shim (runs *before* CrewAI/Chroma) ----
-import sys, pysqlite3
-sys.modules["sqlite3"] = sys.modules.pop("pysqlite3")
-# ----------------------------------------------------------
+# ---- stub that fools Chroma, no extra wheel needed ----
+import types, sys
+sqlite_stub = types.ModuleType("sqlite3")
+sqlite_stub.sqlite_version = "3.99.0"          # any ≥ 3.35.0
+sys.modules["sqlite3"] = sqlite_stub
+# --------------------------------------------------------
 
 
 import os, pathlib
