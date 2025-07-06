@@ -10,12 +10,12 @@ except ModuleNotFoundError:
     pass
     import sqlite3 as _sqlite3
     from packaging import version
-        if version.parse(_sqlite3.sqlite_version) < version.parse("3.35.0"):
-            import types
-            stub = types.ModuleType("sqlite3")
-            stub.sqlite_version = "3.99.0"
-            stub.sqlite_version_info = (3,99,0)
-            sys.modules["sqlite3"] = stub
+    if version.parse(_sqlite3.sqlite_version) < version.parse("3.35.0"):
+        import types
+        stub = types.ModuleType("sqlite3")
+        stub.sqlite_version = "3.99.0"
+        stub.sqlite_version_info = (3,99,0)
+        sys.modules["sqlite3"] = stub
 
 
 from quick_research.crew import QuickResearchCrew
