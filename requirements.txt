@@ -1,6 +1,7 @@
-# requirements.txt – working example
-crewai[tools]>=0.75.0,<1.0.0      # ✅ flexible, known-good range
+crewai[tools]>=0.75.0,<1.0.0
 streamlit==1.45.0
 openai==1.26.0
 pydantic==2.8.1
-pysqlite3-binary==0.5.4.post2 ; sys_platform == 'linux'
+
+# Modern SQLite runtime – install only on Linux (Streamlit Cloud)
+pysqlite3-binary==0.5.4 ; sys_platform == 'linux'
