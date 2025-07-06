@@ -24,7 +24,6 @@ authors = ["Your Name <you@example.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.12"
 crewai = "0.122.0"
 streamlit = "1.45.0"
 openai = "1.26.0"
