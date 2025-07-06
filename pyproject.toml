@@ -1,0 +1,23 @@
+[project]
+name = "quick_research"
+version = "0.1.0"
+description = "quick_research using CrewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10, <=3.13"
+
+# ⬆️  No runtime dependencies here; Streamlit will fall back to requirements.txt.
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+packages = ["quick_research"]
+
+[project.scripts]
+quick_research = "quick_research.main:run"
+run_crew       = "quick_research.main:run"
+train          = "quick_research.main:train"
+replay         = "quick_research.main:replay"
+test           = "quick_research.main:test"
