@@ -5,12 +5,13 @@ import sys
 # sys.modules["sqlite3"] = sys.modules.pop("pysqlite3")
 # ---------------------------
 
-import chromadb
-from chromadb.config import Settings
+import os, pathlib
 
-client = chromadb.PersistentClient(
-    path="chroma_store",                           # any folder
-    settings=Settings(chroma_db_impl="duckdb+parquet")
+# Tell Chroma to use DuckDB instead of SQLite
+os.environ["CHROMA_DB_IMPL"] = "duckdb+parquet"
+# Optional: where to keep the *.parquet files
+os.environ["CHROMA_PERSIST_DIRECTORY"] = str(
+    pathlib.Path(__file__).parent / "chroma_store"
 )
 
 
