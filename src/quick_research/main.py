@@ -1,20 +1,7 @@
 #!/usr/bin/env python
-# --- force modern SQLite ---
-# ---- modern SQLite shim (runs *before* CrewAI/Chroma) ----
-# ---- stub that fools Chroma, no extra wheel needed ----
-# ----------------  put this BEFORE the first `import chromadb` / `import crewai` -------------
-# -- fake-sqlite stub : place before the first import that triggers Chroma --
+#This is a test
 import sys, pysqlite3
 sys.modules["sqlite3"] = sys.modules.pop("pysqlite3")
-
-import os, pathlib
-
-# Tell Chroma to use DuckDB instead of SQLite
-os.environ["CHROMA_DB_IMPL"] = "duckdb+parquet"
-# Optional: where to keep the *.parquet files
-os.environ["CHROMA_PERSIST_DIRECTORY"] = str(
-    pathlib.Path(__file__).parent / "chroma_store"
-)
 
 
 from quick_research.crew import QuickResearchCrew
