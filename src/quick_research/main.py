@@ -1,8 +1,17 @@
 #!/usr/bin/env python
 # --- force modern SQLite ---
-import sys, pysqlite3
-sys.modules["sqlite3"] = sys.modules.pop("pysqlite3")
+import sys
+# , pysqlite3
+# sys.modules["sqlite3"] = sys.modules.pop("pysqlite3")
 # ---------------------------
+
+import chromadb
+from chromadb.config import Settings
+
+client = chromadb.PersistentClient(
+    path="chroma_store",                           # any folder
+    settings=Settings(chroma_db_impl="duckdb+parquet")
+)
 
 
 from quick_research.crew import QuickResearchCrew
