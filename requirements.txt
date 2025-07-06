@@ -1,0 +1,8 @@
+# Core packages
+crewai==0.122.0
+streamlit==1.45.0
+openai==1.26.0
+pydantic==2.8.1
+
+# Modern SQLite runtime (only installs on Linux build images such as Streamlit Cloud)
+pysqlite3-binary==0.5.4.post2 ; sys_platform == 'linux'
