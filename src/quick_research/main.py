@@ -4,25 +4,8 @@
 # ---- stub that fools Chroma, no extra wheel needed ----
 # ----------------  put this BEFORE the first `import chromadb` / `import crewai` -------------
 # -- fake-sqlite stub : place before the first import that triggers Chroma --
-import types, sys
-
-stub = types.ModuleType("sqlite3")
-stub.sqlite_version      = "3.99.0"
-stub.sqlite_version_info = (3, 99, 0)
-
-# minimal exception hierarchy Chromadb touches
-class Error(Exception): ...
-class DatabaseError(Error): ...
-stub.Error = Error
-stub.DatabaseError = DatabaseError
-
-# optional: guard against accidental real use
-def _disabled_connect(*_, **__):
-    raise RuntimeError("sqlite3 is stubbed out in this runtime.")
-stub.connect = _disabled_connect
-
-sys.modules["sqlite3"] = stub
-# ---------------------------------------------------------------------------
+import sys, pysqlite3
+sys.modules["sqlite3"] = sys.modules.pop("pysqlite3")
 
 import os, pathlib
 
