@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 # --- force modern SQLite ---
-import sys
-# , pysqlite3
-# sys.modules["sqlite3"] = sys.modules.pop("pysqlite3")
-# ---------------------------
+# ---- modern SQLite shim (runs *before* CrewAI/Chroma) ----
+import sys, pysqlite3
+sys.modules["sqlite3"] = sys.modules.pop("pysqlite3")
+# ----------------------------------------------------------
+
 
 import os, pathlib
 
