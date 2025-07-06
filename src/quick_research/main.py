@@ -2,12 +2,20 @@
 # --- force modern SQLite ---
 # ---- modern SQLite shim (runs *before* CrewAI/Chroma) ----
 # ---- stub that fools Chroma, no extra wheel needed ----
-import types, sys
-sqlite_stub = types.ModuleType("sqlite3")
-sqlite_stub.sqlite_version = "3.99.0"          # any ≥ 3.35.0
-sys.modules["sqlite3"] = sqlite_stub
-# --------------------------------------------------------
+# ----------------  put this BEFORE the first `import chromadb` / `import crewai` -------------
+import sys, types
 
+stub = types.ModuleType("sqlite3")
+stub.sqlite_version      = "3.99.0"      # any string ≥ "3.35.0"
+stub.sqlite_version_info = (3, 99, 0)    # the tuple chromadb actually checks
+
+# Optional: a no-op connect() so accidental uses fail loudly
+def _disabled_connect(*args, **kwargs):
+    raise RuntimeError("The real sqlite3 module is disabled in this runtime.")
+stub.connect = _disabled_connect
+
+sys.modules["sqlite3"] = stub
+# ---------------------------------------------------------------------------------------------
 
 import os, pathlib
 
