@@ -1,5 +1,14 @@
-import sys, streamlit as st
+import streamlit as st
 from pathlib import Path
+
+import sys
+try:
+    import pysqlite3                      # present on Linux build images
+    sys.modules["sqlite3"] = sys.modules.pop("pysqlite3")
+except ModuleNotFoundError:
+    # We're on macOS (no wheel) or the wheel failed to install.
+    # Either fall back to the real sqlite3, or leave your stub in place.
+    pass
 
 # make src/ importable
 sys.path.append(str(Path(__file__).parent / "src"))
