@@ -3,10 +3,7 @@ name = "quick_research"
 version = "0.1.0"
 description = "quick_research using crewAI"
 authors = [{ name = "Your Name", email = "you@example.com" }]
-requires-python = ">=3.10,<=3.13"
-dependencies = [
-    "crewai[tools]>=0.75.0,<1.0.0"
-]
+
 
 [project.scripts]
 quick_research = "quick_research.main:run"
@@ -24,12 +21,14 @@ authors = ["Your Name <you@example.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
+python = "^3.12"
 crewai = "0.122.0"
 streamlit = "1.45.0"
 openai = "1.26.0"
 pydantic = "2.8.1"
 # Install modern SQLite runtime only on Linux build images (e.g. Streamlit Cloud)
 pysqlite3-binary = { version = "^0.5.4", markers = "sys_platform == 'linux'" }
+
 
 [build-system]
 requires = ["poetry-core"]
